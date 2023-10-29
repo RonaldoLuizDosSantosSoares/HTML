@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-    <title>Formulario de Cadastro de Funcionário</title>
+    <title>Formulario de Cadastro de Funcionario</title>
     <script>
         function validarFormulario() {
             var cartaoPonto = document.getElementById("cartao_ponto").value;
