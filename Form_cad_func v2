@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
     <title>Formulario de Cadastro de Funcionario</title>
@@ -22,15 +21,6 @@
     </script>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Funcionarios</a></li>
-            <li><a href="#">Relatorios</a></li>
-            <li><a href="#">Configuracoes</a></li>
-        </ul>
-    </nav>
-
     <h1>Cadastro de Funcionario</h1>
 
     <form action="processar_dados.php" method="POST" onsubmit="return validarFormulario()">
