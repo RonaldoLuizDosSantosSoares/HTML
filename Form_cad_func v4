@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de Cadastro de Funcionario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #content {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        #novo_cartao_form {
+            display: none;
+        }
+    </style>
+    <script>
+        function validarFormulario() {
+            var cartaoPonto = document.getElementById("cartao_ponto").value;
+            var nome = document.getElementById("nome").value;
+            var telefone = document.getElementById("telefone").value;
+            var setor = document.getElementById("setor").value;
+            if (!/^\d+$/.test(cartaoPonto)) {
+                alert("Por favor, digite apenas numeros no campo Cartao de Ponto.");
+                return false;
+            }
+            if (!/^[a-zA-Z\s]*$/.test(nome)) {
+                alert("Por favor, digite apenas letras no campo Nome.");
+                return false;
+            }
+            return true;
+        }
+
+        function perdiOCartao() {
+            var cartaoPontoAnterior = document.getElementById("cartao_ponto").value;
+            var nomeAnterior = document.getElementById("nome").value;
+            var novoCartaoForm = document.getElementById("novo_cartao_form");
+            novoCartaoForm.style.display = "block";
+            document.getElementById("novo_cartao_button").onclick = function () {
+                var cpf = document.getElementById("cpf").value;
+                var dataNascimento = document.getElementById("data_nascimento").value;
+                var novoCartaoPonto = gerarCartaoPontoAleatorio(cpf, dataNascimento);
+                document.getElementById("cartao_ponto").value = novoCartaoPonto;
+                var cartaoPontoAnterior = document.getElementById("cartao_ponto").value;
+                var nomeAnterior = document.getElementById("nome").value;
+            };
+        }
+        
+        
+</script>
+<script>
+      function gerarCartaoPontoAleatorio(cpf, dataNascimento) {
+        if (!cpf || !dataNascimento) {
+            alert("Por favor, forneça CPF e Data de Nascimento validos.");
+            return "";
+        }
+        var numeroAleatorio = Math.floor(Math.random() * 10000);
+        var cartaoPonto = cpf.substr(0, 3) + dataNascimento.substr(0, 3) + numeroAleatorio;
+        return cartaoPonto;
+    }
+
+        function limparDados() {
+            document.getElementById("cartao_ponto").value = "";
+            document.getElementById("nome").value = "";
+            document.getElementById("telefone").value = "";
+            document.getElementById("setor").value = "";
+        }
+
+        function armazenarDados() {
+            var cartaoPonto = document.getElementById("cartao_ponto").value;
+            var nome = document.getElementById("nome").value;
+            var telefone = document.getElementById("telefone").value;
+            var setor = document.getElementById("setor").value;
+            alert("Dados armazenados:\nCartao de Ponto: " + cartaoPonto + "\nNome: " + nome + "\nTelefone: " + telefone + "\nSetor: " + setor);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="content">
+        <h1>Cadastro de Funcionario</h1>
+
+        <form action="processar_dados.php" method="POST" onsubmit="return validarFormulario()">
+            <label for="cartao_ponto">Cartao de Ponto:</label>
+            <input type="text" id="cartao_ponto" name="cartao_ponto" required><br>
+
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required><br>
+
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" name="telefone" required><br>
+
+            <label for="setor">Setor:</label>
+            <input type="text" id="setor" name="setor" required><br>
+
+            <button type="submit">Enviar</button>
+            <button type="button" onclick="limparDados()">Limpar</button>
+            <button type="button" onclick="armazenarDados()">Armazenar Dados</button>
+        </form>
+
+        <a href="javascript:void(0);" onclick="perdiOCartao()">Perdi o Cartao</a>
+
+        <div id="novo_cartao_form" style="display: none;">
+            <h2>Gerar Novo Cartão de Ponto</h2>
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" required><br>
+            <label for="data_nascimento">Data de Nascimento:</label>
+            <input type="text" id="data_nascimento" required><br>
+            <button id="novo_cartao_button">Gerar Novo Cartao</button>
+        </div>
+    </div>
+    <p>Link do <a href="https://github.com/RonaldoLuizDosSantosSoares?tab=repositories" target="_blank">GitHub</a>.</p>
+</body>
+</html>
