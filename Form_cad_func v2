@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Formulario de Cadastro de Funcionario</title>
+    <script>
+        function validarFormulario() {
+            var cartaoPonto = document.getElementById("cartao_ponto").value;
+            var nome = document.getElementById("nome").value;
+            var telefone = document.getElementById("telefone").value;
+            var setor = document.getElementById("setor").value;
+            if (!/^\d+$/.test(cartaoPonto)) {
+                alert("Por favor, digite apenas numeros no campo Cartao de Ponto.");
+                return false;
+            }
+            if (!/^[a-zA-Z\s]*$/.test(nome)) {
+                alert("Por favor, digite apenas letras no campo Nome.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Funcionarios</a></li>
+            <li><a href="#">Relatorios</a></li>
+            <li><a href="#">Configuracoes</a></li>
+        </ul>
+    </nav>
+
+    <h1>Cadastro de Funcionario</h1>
+
+    <form action="processar_dados.php" method="POST" onsubmit="return validarFormulario()">
+        <label for="cartao_ponto">Cartao de Ponto:</label>
+        <input type="text" id="cartao_ponto" name="cartao_ponto" required><br>
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required><br>
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" required><br>
+
+        <label for="setor">Setor:</label>
+        <input type="text" id="setor" name="setor" required><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
